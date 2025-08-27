@@ -1,0 +1,10 @@
+# Aktifkan Mesin Rewrite
+RewriteEngine On
+
+# Jangan terapkan aturan jika request adalah untuk file atau folder yang sudah ada
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Arahkan semua request ke /raw/[uuid] ke file view.php?id=[uuid]
+# [a-f0-9\-]+ cocok dengan format UUID (hexadecimal dan tanda hubung)
+RewriteRule ^raw/([a-f0-9\-]+)$ view.php?id=$1 [L]
